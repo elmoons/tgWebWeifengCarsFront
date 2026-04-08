@@ -5,7 +5,8 @@ export const CONFIG = {
 
     fixed_costs: {
         china_logistics_cny: 12500,
-        russia_costs_rub: 85000
+        russia_costs_rub: 85000,
+        company_commission_rub: 65000
     },
 
     duty_eur_per_cc: {

@@ -104,6 +104,12 @@ function Result() {
                     value={`${CONFIG.fixed_costs.russia_costs_rub.toLocaleString()} ₽`}
                 />
 
+                <ResultRow
+                    title="Комиссия компании"
+                    subtitle="Фиксированная комиссия"
+                    value={`${result.companyCommission.toLocaleString()} ₽`}
+                />
+
                 <div style={{ fontWeight: "bold", marginTop: "15px" }}>Общая стоимость</div>
                 <div style={{ fontSize: "18px", marginBottom: "15px" }}>{result.total.toLocaleString()} ₽</div>
 

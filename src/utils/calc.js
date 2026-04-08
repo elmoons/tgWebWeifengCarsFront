@@ -108,7 +108,8 @@ export function calculate({ priceCNY, engine, year, month, coef }, rates) {
         customsFee +
         recyclingFee +
         chinaCostsRub +
-        CONFIG.fixed_costs.russia_costs_rub;
+        CONFIG.fixed_costs.russia_costs_rub +
+        CONFIG.fixed_costs.company_commission_rub;
 
     return {
         total: Math.round(total),
@@ -119,6 +120,7 @@ export function calculate({ priceCNY, engine, year, month, coef }, rates) {
         chinaCostsRub: Math.round(chinaCostsRub),
         priceRub: Math.round(priceRub),
         swiftCNY,
-        chinaLogistics
+        chinaLogistics,
+        companyCommission: CONFIG.fixed_costs.company_commission_rub
     };
 }
