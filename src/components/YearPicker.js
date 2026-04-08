@@ -21,14 +21,15 @@ function YearPicker({ year, setYear }) {
             </div>
 
             {open && (
-
-                <div className="sheet">
-
-                    <div className="sheet-content">
-
-                        <div className="sheet-title">
-                            Выберите год
-                        </div>
+                <div
+                    className="sheet"
+                    onClick={() => setOpen(false)} // клик по затемнению закрывает
+                >
+                    <div
+                        className="sheet-content"
+                        onClick={(e) => e.stopPropagation()} // клик внутри не закрывает
+                    >
+                        <div className="sheet-title">Выберите год</div>
 
                         {years.map((y) => (
                             <div
@@ -36,17 +37,14 @@ function YearPicker({ year, setYear }) {
                                 className="sheet-item"
                                 onClick={() => {
                                     setYear(y);
-                                    setOpen(false);
+                                    setOpen(false); // закрываем после выбора
                                 }}
                             >
                                 {y}
                             </div>
                         ))}
-
                     </div>
-
                 </div>
-
             )}
 
         </>
