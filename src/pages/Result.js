@@ -129,6 +129,13 @@ function Result() {
                     Калькулятор предоставляет примерную конечную стоимость со всеми расходами в городе Уссурийск
                 </div>
                 <Disclaimer />
+                <button
+                    className="button-outline"
+                    onClick={() => window.location.href = "mailto:manager@example.com"} // контакт менеджера
+                    style={{ marginTop: "10px" }}
+                >
+                    Связаться с менеджером
+                </button>
             </div>
         </div>
     );

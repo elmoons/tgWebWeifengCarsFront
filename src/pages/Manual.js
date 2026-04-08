@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import YearPicker from "../components/YearPicker";
 import MonthPicker from "../components/MonthPicker";
@@ -6,6 +6,12 @@ import Header from "../components/Header";
 import Disclaimer from "../components/Disclaimer";
 
 function Manual() {
+    const priceRef = useRef(null);
+    const engineRef = useRef(null);
+    const coefRef = useRef(null);
+    const yearRef = useRef(null);
+    const monthRef = useRef(null);
+
     const navigate = useNavigate();
     const [price, setPrice] = useState("");
     const [year, setYear] = useState("");
@@ -59,65 +65,69 @@ function Manual() {
 
                 <p>Цена автомобиля (CNY)</p>
                 <input
+                    ref={priceRef}
                     className="input"
                     type="text"
                     placeholder="Введите цену"
                     value={formatNumber(price)}
+                    onFocus={() => priceRef.current.scrollIntoView({ behavior: "smooth", block: "center" })}
                     onChange={(e) => {
                         const raw = parseNumber(e.target.value);
-
-                        if (/^\d*$/.test(raw)) {
-                            setPrice(raw);
-                        }
+                        if (/^\d*$/.test(raw)) setPrice(raw);
                     }}
                 />
+
                 {errors.price && <div style={{ color: "#ff5555", fontSize: "12px" }}>{errors.price}</div>}
 
                 <p>Год производства</p>
-                <YearPicker year={year} setYear={setYear} />
+                <div ref={yearRef}>
+                    <YearPicker
+                        year={year}
+                        setYear={setYear}
+                        onOpen={() => yearRef.current.scrollIntoView({ behavior: "smooth", block: "center" })}
+                    />
+                </div>
                 {errors.year && <div style={{ color: "#ff5555", fontSize: "12px" }}>{errors.year}</div>}
 
                 <p>Месяц производства</p>
-                <MonthPicker month={month} setMonth={setMonth} /> {/* <-- 3. вставка компонента */}
+                <div ref={monthRef}>
+                    <MonthPicker
+                        month={month}
+                        setMonth={setMonth}
+                        onOpen={() => monthRef.current.scrollIntoView({ behavior: "smooth", block: "center" })}
+                    />
+                </div>
                 {errors.month && <div style={{ color: "#ff5555", fontSize: "12px" }}>{errors.month}</div>}
 
                 <p>Объем двигателя (см³)</p>
                 <input
+                    ref={engineRef}
                     className="input"
                     type="text"
                     placeholder="от 660 см³"
                     value={formatNumber(engine)}
+                    onFocus={() => engineRef.current.scrollIntoView({ behavior: "smooth", block: "center" })}
                     onChange={(e) => {
                         const raw = parseNumber(e.target.value);
-
-                        if (/^\d*$/.test(raw)) {
-                            setEngine(raw);
-                        }
+                        if (/^\d*$/.test(raw)) setEngine(raw);
                     }}
                 />
                 {errors.engine && <div style={{ color: "#ff5555", fontSize: "12px" }}>{errors.engine}</div>}
 
                 <p>Коэффициент курса</p>
                 <input
+                    ref={coefRef}
                     className="input"
                     type="text"
                     placeholder="1.02"
                     value={coef}
+                    onFocus={() => coefRef.current.scrollIntoView({ behavior: "smooth", block: "center" })}
                     onChange={(e) => {
                         let val = e.target.value;
-
-                        // убираем всё кроме цифр и точки
                         val = val.replace(/[^0-9.]/g, "");
-
-                        // оставляем только одну точку
                         const parts = val.split(".");
-                        if (parts.length > 2) {
-                            val = parts[0] + "." + parts.slice(1).join("");
-                        }
-
-                        // запрещаем точку первой
+                        if (parts.length > 2) val = parts[0] + "." + parts.slice(1).join("");
                         if (val.startsWith(".")) return;
-
                         setCoef(val);
                     }}
                 />
@@ -130,6 +140,13 @@ function Manual() {
                     Рассчитать стоимость
                 </button>
                 <Disclaimer />
+                <button
+                    className="button-outline"
+                    onClick={() => window.location.href = "mailto:manager@example.com"} // можно заменить на реальный контакт
+                    style={{ marginTop: "15px" }}
+                >
+                    Связаться с менеджером
+                </button>
             </div>
         </div>
     );

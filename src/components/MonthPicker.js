@@ -15,28 +15,27 @@ const months = [
     { value: 12, label: "Декабрь" },
 ];
 
-function MonthPicker({ month, setMonth }) {
+function MonthPicker({ month, setMonth, onOpen }) { // добавили onOpen
     const [open, setOpen] = useState(false);
-
     const selected = months.find(m => m.value === month);
 
     return (
         <div>
-            {/* Кнопка */}
             <div
                 className="input"
-                onClick={() => setOpen(true)}
+                onClick={() => {
+                    setOpen(true);
+                    if (onOpen) onOpen(); // скроллим к полю
+                }}
                 style={{ cursor: "pointer" }}
             >
                 {selected ? selected.label : "Выберите месяц"}
             </div>
 
-            {/* Выпадающее окно */}
             {open && (
                 <div className="sheet" onClick={() => setOpen(false)}>
                     <div className="sheet-content" onClick={(e) => e.stopPropagation()}>
                         <div className="sheet-title">Выберите месяц</div>
-
                         {months.map((m) => (
                             <div
                                 key={m.value}

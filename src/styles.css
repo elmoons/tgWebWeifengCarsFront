@@ -81,6 +81,22 @@ body {
     background: #222;
 }
 
+.button-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 * {
     box-sizing: border-box;
 }
