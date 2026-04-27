@@ -32,6 +32,13 @@ function Home() {
                     Китай
                 </button>
                 <Disclaimer />
+                <button
+                    className="button-outline"
+                    onClick={() => window.open("https://t.me/Weifeng_Sergei", "_blank")}
+                    style={{ marginTop: "15px" }}
+                >
+                    Связаться с менеджером
+                </button>
             </div>
 
         </div>

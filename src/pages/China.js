@@ -22,6 +22,13 @@ function China() {
                     Перейти к расчету
                 </button>
                 <Disclaimer />
+                <button
+                    className="button-outline"
+                    onClick={() => window.open("https://t.me/Weifeng_Sergei", "_blank")}
+                    style={{ marginTop: "15px" }}
+                >
+                    Связаться с менеджером
+                </button>
             </div>
 
             <div style={{ fontSize: "12px", opacity: 0.6, marginTop: "15px" }}>

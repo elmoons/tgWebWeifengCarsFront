@@ -142,7 +142,7 @@ function Manual() {
                 <Disclaimer />
                 <button
                     className="button-outline"
-                    onClick={() => window.location.href = "mailto:manager@example.com"} // можно заменить на реальный контакт
+                    onClick={() => window.open("https://t.me/Weifeng_Sergei", "_blank")}
                     style={{ marginTop: "15px" }}
                 >
                     Связаться с менеджером
